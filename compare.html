@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Balls - BowlCompare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e' },
+            accent: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/compare.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-brand">
+        <div class="navbar-brand-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+        <div class="navbar-brand-text"><span class="navbar-brand-name">BowlCompare</span><span class="navbar-brand-tagline">Ball Comparison & Bag Builder</span></div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="database.html" class="nav-link">Database</a>
+        <a href="compare.html" class="nav-link active">Compare</a>
+        <a href="bag.html" class="nav-link">Bag Builder</a>
+        <a href="overlap.html" class="nav-link">Overlap</a>
+      </div>
+      <div class="nav-actions">
+        <div class="nav-search"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg><input type="text" id="global-search" placeholder="Search balls..."></div>
+        <a href="bag.html" class="nav-icon-btn"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg><span id="bag-count" class="nav-icon-badge"></span></a>
+        <a href="compare.html" class="nav-icon-btn"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg><span id="compare-count" class="nav-icon-badge"></span></a>
+        <button id="theme-toggle" class="nav-icon-btn theme-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu"><div class="mobile-menu-links">
+      <a href="index.html" class="mobile-menu-link">Home</a>
+      <a href="database.html" class="mobile-menu-link">Database</a>
+      <a href="compare.html" class="mobile-menu-link active">Compare</a>
+      <a href="bag.html" class="mobile-menu-link">Bag Builder</a>
+      <a href="overlap.html" class="mobile-menu-link">Overlap</a>
+    </div></div>
+  </nav>
+
+  <main class="pt-16">
+    <div class="container py-8">
+      <div class="compare-header">
+        <h1 class="compare-title">Compare Bowling Balls</h1>
+        <p class="compare-subtitle">Compare up to 6 balls side-by-side with detailed specifications and charts</p>
+      </div>
+      
+      <!-- Queue Bar -->
+      <div class="compare-queue-bar">
+        <div class="compare-queue-info">
+          <div class="compare-queue-count">
+            <span>Selected:</span>
+            <span id="queue-count-badge" class="compare-queue-count-badge">0</span>
+            <span>/ 6 balls</span>
+          </div>
+          <div id="queue-balls" class="compare-queue-balls"></div>
+        </div>
+        <div class="compare-actions">
+          <button id="clear-compare" class="btn btn-outline btn-sm">Clear All</button>
+          <a href="database.html" class="btn btn-primary btn-sm">Add Balls</a>
+        </div>
+      </div>
+      
+      <!-- Comparison Content -->
+      <div id="compare-content">
+        <!-- Empty State -->
+        <div id="compare-empty" class="compare-empty">
+          <div class="compare-empty-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div>
+          <h3 class="compare-empty-title">No balls selected</h3>
+          <p class="compare-empty-text">Add balls from the database to compare their specifications side-by-side</p>
+          <div class="compare-empty-actions">
+            <a href="database.html" class="btn btn-primary">Browse Database</a>
+          </div>
+        </div>
+        
+        <!-- Comparison Grid (shown when balls are selected) -->
+        <div id="comparison-grid" class="comparison-grid hidden"></div>
+        
+        <!-- Charts Section -->
+        <div id="charts-section" class="comparison-charts hidden">
+          <h2 class="comparison-charts-title">Visual Comparison</h2>
+          <div class="charts-grid">
+            <div class="chart-card">
+              <h3 class="chart-card-title">Performance Radar</h3>
+              <div class="chart-container"><canvas id="radar-chart"></canvas></div>
+            </div>
+            <div class="chart-card">
+              <h3 class="chart-card-title">RG & Differential</h3>
+              <div class="chart-container"><canvas id="rg-diff-chart"></canvas></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Export Actions -->
+        <div id="export-actions" class="compare-export-actions hidden">
+          <button onclick="window.print()" class="btn btn-outline">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            Print Comparison
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2024 BowlCompare. All rights reserved.</p></div></div></footer>
+  <button id="back-to-top" class="back-to-top hidden"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg></button>
+
+  <script src="js/data.js"></script>
+  <script src="js/oil-patterns.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/compare.js"></script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ball Details - BowlCompare</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e' },
+            accent: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-brand">
+        <div class="navbar-brand-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </div>
+        <div class="navbar-brand-text">
+          <span class="navbar-brand-name">BowlCompare</span>
+          <span class="navbar-brand-tagline">Ball Comparison & Bag Builder</span>
+        </div>
+      </a>
+      
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="database.html" class="nav-link">Database</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+        <a href="bag.html" class="nav-link">Bag Builder</a>
+        <a href="overlap.html" class="nav-link">Overlap</a>
+      </div>
+      
+      <div class="nav-actions">
+        <div class="nav-search">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="text" id="global-search" placeholder="Search balls...">
+        </div>
+        <a href="bag.html" class="nav-icon-btn"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg><span id="bag-count" class="nav-icon-badge"></span></a>
+        <a href="compare.html" class="nav-icon-btn"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg><span id="compare-count" class="nav-icon-badge"></span></a>
+        <button id="theme-toggle" class="nav-icon-btn theme-toggle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg></button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu-links">
+        <a href="index.html" class="mobile-menu-link">Home</a>
+        <a href="database.html" class="mobile-menu-link">Database</a>
+        <a href="compare.html" class="mobile-menu-link">Compare</a>
+        <a href="bag.html" class="mobile-menu-link">Bag Builder</a>
+        <a href="overlap.html" class="mobile-menu-link">Overlap</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-16">
+    <div class="container py-8">
+      <!-- Back Button -->
+      <a href="database.html" class="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        Back to Database
+      </a>
+      
+      <!-- Ball Detail Content -->
+      <div id="ball-detail" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Loading State -->
+        <div class="lg:col-span-3 text-center py-16">
+          <div class="animate-pulse">
+            <div class="w-32 h-32 bg-gray-700 rounded-full mx-auto mb-4"></div>
+            <div class="h-8 bg-gray-700 rounded w-64 mx-auto mb-2"></div>
+            <div class="h-4 bg-gray-700 rounded w-32 mx-auto"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Similar Balls Section -->
+      <section class="mt-12">
+        <h2 class="text-2xl font-bold text-white mb-6">Similar Balls</h2>
+        <div id="similar-balls" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Similar balls loaded dynamically -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom"><p>&copy; 2024 BowlCompare. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top hidden">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+  </button>
+
+  <script src="js/data.js"></script>
+  <script src="js/oil-patterns.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ballId = getUrlParam('id');
+      if (!ballId) {
+        window.location.href = 'database.html';
+        return;
+      }
+      
+      const ball = BALLS_DATA.find(b => b.id === ballId);
+      if (!ball) {
+        window.location.href = 'database.html';
+        return;
+      }
+      
+      renderBallDetail(ball);
+      renderSimilarBalls(ball);
+    });
+    
+    function renderBallDetail(ball) {
+      const container = document.getElementById('ball-detail');
+      
+      const coverstockBadge = createBadge(ball.coverstockType, getCoverstockColor(ball.coverstockType));
+      const coreTypeBadge = createBadge(ball.coreType, getCoreTypeColor(ball.coreType));
+      const oilBadge = createBadge(ball.oilCondition, getOilConditionColor(ball.oilCondition));
+      
+      container.innerHTML = `
+        <!-- Left Column - Image and Basic Info -->
+        <div class="lg:col-span-1">
+          <div class="bg-gray-800 rounded-xl overflow-hidden sticky top-24">
+            <div class="aspect-square bg-gray-700 relative">
+              <img src="${ball.image || ''}" alt="${ball.name}" class="w-full h-full object-cover">
+              <div class="absolute top-4 right-4 flex flex-col gap-2">
+                ${oilBadge}
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sm text-gray-400">${ball.brand}</span>
+                <span class="text-gray-600">•</span>
+                <span class="text-sm text-gray-400">${ball.releaseYear}</span>
+              </div>
+              <h1 class="text-2xl font-bold text-white mb-4">${ball.name}</h1>
+              <div class="flex flex-wrap gap-2 mb-6">
+                ${coverstockBadge}
+                ${coreTypeBadge}
+              </div>
+              <div class="flex gap-3">
+                <button onclick="addToBag('${ball.id}')" class="flex-1 btn btn-primary">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                  Add to Bag
+                </button>
+                <button onclick="addToCompare('${ball.id}')" class="flex-1 btn btn-accent">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                  Compare
+                </button>
+              </div>
+              ${ball.sourceUrl ? `
+                <a href="${ball.sourceUrl}" target="_blank" class="mt-4 block text-center text-sm text-primary-400 hover:text-primary-300">
+                  View on Manufacturer Site →
+                </a>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Column - Specs and Ratings -->
+        <div class="lg:col-span-2 space-y-6">
+          <!-- Core Specs -->
+          <div class="bg-gray-800 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-white mb-4">Core Specifications</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="spec-card">
+                <div class="spec-card-icon">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                </div>
+                <div class="spec-card-value">${formatNumber(ball.rg, 3)}</div>
+                <div class="spec-card-label">RG</div>
+              </div>
+              <div class="spec-card">
+                <div class="spec-card-icon">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                </div>
+                <div class="spec-card-value">${formatNumber(ball.differential, 3)}</div>
+                <div class="spec-card-label">Differential</div>
+              </div>
+              <div class="spec-card">
+                <div class="spec-card-icon">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                </div>
+                <div class="spec-card-value">${ball.intermediateDiff ? formatNumber(ball.intermediateDiff, 3) : 'N/A'}</div>
+                <div class="spec-card-label">Intermediate Diff</div>
+              </div>
+              <div class="spec-card">
+                <div class="spec-card-icon">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <div class="spec-card-value">${ball.coreName || 'N/A'}</div>
+                <div class="spec-card-label">Core Name</div>
+              </div>
+            </div>
+            
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-gray-700 rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-300 mb-2">Coverstock</h3>
+                <p class="text-white font-semibold">${ball.coverstockName || 'N/A'}</p>
+                <p class="text-gray-400 text-sm capitalize">${ball.coverstockType}</p>
+              </div>
+              <div class="bg-gray-700 rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-300 mb-2">Factory Finish</h3>
+                <p class="text-white font-semibold">${ball.finish || 'N/A'}</p>
+              </div>
+              <div class="bg-gray-700 rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-300 mb-2">Core Type</h3>
+                <p class="text-white font-semibold capitalize">${ball.coreType}</p>
+              </div>
+              <div class="bg-gray-700 rounded-lg p-4">
+                <h3 class="text-sm font-medium text-gray-300 mb-2">Colors</h3>
+                <div class="flex gap-2 flex-wrap">
+                  ${ball.colors.map(color => `<span class="px-2 py-1 bg-gray-600 rounded text-xs text-white capitalize">${color}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Performance Ratings -->
+          <div class="bg-gray-800 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-white mb-4">Performance Ratings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                ${createRatingBar('Hook Potential', ball.hookPotential)}
+                ${createRatingBar('Length', ball.lengthRating)}
+                ${createRatingBar('Backend', ball.backendRating)}
+                ${createRatingBar('Overall Strength', ball.strengthRating)}
+              </div>
+              <div class="flex items-center justify-center">
+                <div class="relative w-48 h-48">
+                  <canvas id="ratings-chart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Recommended Conditions -->
+          <div class="bg-gray-800 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-white mb-4">Recommended Oil Conditions</h2>
+            <div class="flex flex-wrap gap-3">
+              ${createBadge(ball.oilCondition, getOilConditionColor(ball.oilCondition), 'md')}
+            </div>
+            ${ball.notes ? `
+              <div class="mt-4 info-card">
+                <h3 class="info-card-title">Notes</h3>
+                <p class="info-card-content">${ball.notes}</p>
+              </div>
+            ` : ''}
+          </div>
+          
+          <!-- Glossary Tooltips -->
+          <div class="bg-gray-800 rounded-xl p-6">
+            <h2 class="text-xl font-bold text-white mb-4">Understanding the Specs</h2>
+            <div class="space-y-4 text-sm text-gray-300">
+              <div>
+                <strong class="text-white">RG (Radius of Gyration):</strong> 
+                Measures how the mass is distributed in the ball. Lower RG (2.46-2.50) means the ball revs up quicker. Higher RG (2.54+) means the ball stores more energy for the backend.
+              </div>
+              <div>
+                <strong class="text-white">Differential:</strong> 
+                The difference between the maximum and minimum RG. Higher differential (0.050+) means more hook potential. Lower differential (0.030-) means a smoother, more controllable motion.
+              </div>
+              <div>
+                <strong class="text-white">Intermediate Differential:</strong> 
+                Only for asymmetrical cores. Measures the asymmetry of the core. Higher values mean more angular backend motion.
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Create ratings chart
+      createRatingsChart(ball);
+    }
+    
+    function createRatingsChart(ball) {
+      const ctx = document.getElementById('ratings-chart');
+      if (!ctx) return;
+      
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Hook', 'Length', 'Backend', 'Strength'],
+          datasets: [{
+            label: ball.name,
+            data: [ball.hookPotential, ball.lengthRating, ball.backendRating, ball.strengthRating],
+            backgroundColor: 'rgba(14, 165, 233, 0.2)',
+            borderColor: '#0ea5e9',
+            borderWidth: 2,
+            pointBackgroundColor: '#0ea5e9',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: '#0ea5e9'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              pointLabels: { color: '#9ca3af', font: { size: 12 } },
+              ticks: { display: false, max: 10, min: 0 }
+            }
+          },
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    }
+    
+    function renderSimilarBalls(ball) {
+      const similar = findSimilarBalls(ball, BALLS_DATA, 4);
+      const container = document.getElementById('similar-balls');
+      container.innerHTML = similar.map(b => createBallCard(b)).join('');
+    }
+  </script>
+</body>
+</html>

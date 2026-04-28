@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ball Database - BowlCompare</title>
+  <meta name="description" content="Browse our comprehensive bowling ball database with advanced filtering and search.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc',
+              400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1',
+              800: '#075985', 900: '#0c4a6e',
+            },
+            accent: {
+              50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74',
+              400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c',
+              800: '#9a3412', 900: '#7c2d12',
+            }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/dark-mode.css">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-brand">
+        <div class="navbar-brand-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <div class="navbar-brand-text">
+          <span class="navbar-brand-name">BowlCompare</span>
+          <span class="navbar-brand-tagline">Ball Comparison & Bag Builder</span>
+        </div>
+      </a>
+      
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="database.html" class="nav-link active">Database</a>
+        <a href="compare.html" class="nav-link">Compare</a>
+        <a href="bag.html" class="nav-link">Bag Builder</a>
+        <a href="overlap.html" class="nav-link">Overlap</a>
+      </div>
+      
+      <div class="nav-actions">
+        <div class="nav-search">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <input type="text" id="global-search" placeholder="Search balls...">
+        </div>
+        
+        <a href="bag.html" class="nav-icon-btn" title="My Bag">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <span id="bag-count" class="nav-icon-badge"></span>
+        </a>
+        
+        <a href="compare.html" class="nav-icon-btn" title="Compare">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+          <span id="compare-count" class="nav-icon-badge"></span>
+        </a>
+        
+        <button id="theme-toggle" class="nav-icon-btn theme-toggle" title="Toggle Theme">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+        </button>
+        
+        <button id="mobile-menu-btn" class="mobile-menu-btn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu-links">
+        <a href="index.html" class="mobile-menu-link"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>Home</a>
+        <a href="database.html" class="mobile-menu-link active"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path></svg>Database</a>
+        <a href="compare.html" class="mobile-menu-link"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>Compare</a>
+        <a href="bag.html" class="mobile-menu-link"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>Bag Builder</a>
+        <a href="overlap.html" class="mobile-menu-link"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>Overlap</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-16">
+    <div class="container py-8">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-white mb-2">Ball Database</h1>
+        <p class="text-gray-400">Browse and filter through our comprehensive bowling ball collection</p>
+      </div>
+      
+      <!-- Search and Filters -->
+      <div class="bg-gray-800 rounded-xl p-6 mb-8">
+        <!-- Search Bar -->
+        <div class="mb-6">
+          <div class="relative max-w-xl">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input 
+              type="text" 
+              id="database-search" 
+              placeholder="Search by name, brand, or core..." 
+              class="w-full pl-10 pr-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+            >
+          </div>
+        </div>
+        
+        <!-- Filter Panels -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Brand Filter -->
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Brand</label>
+            <select id="filter-brand" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-primary-500">
+              <option value="">All Brands</option>
+            </select>
+          </div>
+          
+          <!-- Coverstock Type -->
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Coverstock Type</label>
+            <select id="filter-coverstock" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-primary-500">
+              <option value="">All Types</option>
+              <option value="solid">Solid</option>
+              <option value="pearl">Pearl</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="urethane">Urethane</option>
+              <option value="plastic">Plastic</option>
+            </select>
+          </div>
+          
+          <!-- Core Type -->
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Core Type</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 text-sm text-gray-300">
+                <input type="radio" name="core-type" value="" checked class="text-primary-500 focus:ring-primary-500 bg-gray-700 border-gray-600">
+                All
+              </label>
+              <label class="flex items-center gap-2 text-sm text-gray-300">
+                <input type="radio" name="core-type" value="symmetrical" class="text-primary-500 focus:ring-primary-500 bg-gray-700 border-gray-600">
+                Sym
+              </label>
+              <label class="flex items-center gap-2 text-sm text-gray-300">
+                <input type="radio" name="core-type" value="asymmetrical" class="text-primary-500 focus:ring-primary-500 bg-gray-700 border-gray-600">
+                Asym
+              </label>
+            </div>
+          </div>
+          
+          <!-- Oil Condition -->
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Oil Condition</label>
+            <select id="filter-oil" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-primary-500">
+              <option value="">All Conditions</option>
+              <option value="light">Light</option>
+              <option value="medium">Medium</option>
+              <option value="medium-heavy">Medium-Heavy</option>
+              <option value="heavy">Heavy</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Advanced Filters Toggle -->
+        <div class="mt-4 pt-4 border-t border-gray-700">
+          <button id="toggle-advanced-filters" class="text-sm text-primary-400 hover:text-primary-300 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+            Advanced Filters
+          </button>
+          
+          <div id="advanced-filters" class="hidden mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Year Range -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Year Range</label>
+              <div class="flex items-center gap-2">
+                <input type="number" id="filter-year-min" placeholder="From" min="2015" max="2026" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-primary-500">
+                <span class="text-gray-400">-</span>
+                <input type="number" id="filter-year-max" placeholder="To" min="2015" max="2026" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-primary-500">
+              </div>
+            </div>
+            
+            <!-- RG Range -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">RG Range</label>
+              <div class="flex items-center gap-2">
+                <input type="number" id="filter-rg-min" placeholder="Min" step="0.001" min="2.40" max="2.80" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-primary-500">
+                <span class="text-gray-400">-</span>
+                <input type="number" id="filter-rg-max" placeholder="Max" step="0.001" min="2.40" max="2.80" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-primary-500">
+              </div>
+            </div>
+            
+            <!-- Differential Range -->
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Differential Range</label>
+              <div class="flex items-center gap-2">
+                <input type="number" id="filter-diff-min" placeholder="Min" step="0.001" min="0.020" max="0.060" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-primary-500">
+                <span class="text-gray-400">-</span>
+                <input type="number" id="filter-diff-max" placeholder="Max" step="0.001" min="0.020" max="0.060" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-primary-500">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Results Bar -->
+        <div class="mt-6 pt-4 border-t border-gray-700 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <span id="results-count" class="text-sm text-gray-400">Showing 0 balls</span>
+            
+            <select id="sort-options" class="px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-primary-500">
+              <option value="name-asc">Name (A-Z)</option>
+              <option value="name-desc">Name (Z-A)</option>
+              <option value="year-desc">Newest First</option>
+              <option value="year-asc">Oldest First</option>
+              <option value="rg-asc">RG (Low to High)</option>
+              <option value="rg-desc">RG (High to Low)</option>
+              <option value="diff-desc">Diff (High to Low)</option>
+              <option value="diff-asc">Diff (Low to High)</option>
+            </select>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <button id="view-cards" class="px-3 py-2 bg-primary-600 text-white rounded-lg text-sm hover:bg-primary-700 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+              </svg>
+            </button>
+            <button id="view-table" class="px-3 py-2 bg-gray-700 text-gray-300 rounded-lg text-sm hover:bg-gray-600 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Results Container -->
+      <div id="results-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Balls will be loaded here -->
+      </div>
+      
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden text-center py-16">
+        <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <h3 class="text-xl font-semibold text-white mb-2">No balls found</h3>
+        <p class="text-gray-400">Try adjusting your filters or search terms</p>
+        <button id="clear-filters" class="mt-4 btn btn-primary">Clear All Filters</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 BowlCompare. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-to-top hidden">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/oil-patterns.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/database.js"></script>
+</body>
+</html>

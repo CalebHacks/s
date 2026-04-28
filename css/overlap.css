@@ -1,0 +1,569 @@
+/* Overlap Analysis Page Styles */
+
+.overlap-page {
+  padding: 2rem 0;
+}
+
+.overlap-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.overlap-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.overlap-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* Bag Selection */
+.overlap-bag-select {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.overlap-bag-select-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.overlap-bag-select-dropdown {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.overlap-bag-select-dropdown:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Pattern Selection */
+.pattern-selection {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pattern-selection-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.pattern-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.pattern-select-card {
+  background-color: var(--bg-tertiary);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.pattern-select-card:hover {
+  background-color: var(--bg-secondary);
+}
+
+.pattern-select-card.selected {
+  border-color: var(--primary-color);
+  background-color: rgba(8, 145, 178, 0.1);
+}
+
+.pattern-select-card-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.pattern-select-card-info {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Balls in Bag Display */
+.bag-balls-display {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+}
+
+.bag-ball-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.bag-ball-chip-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bag-ball-chip-name {
+  font-weight: 500;
+}
+
+.bag-ball-chip-role {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Compatibility Matrix */
+.compatibility-matrix {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.compatibility-matrix-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.matrix-table th,
+.matrix-table td {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.matrix-table th {
+  background-color: var(--bg-tertiary);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.matrix-table th:first-child {
+  text-align: left;
+  min-width: 150px;
+}
+
+.matrix-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.matrix-cell {
+  width: 60px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+}
+
+.matrix-cell:hover {
+  transform: scale(1.1);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Score colors */
+.score-excellent {
+  background-color: #10b981;
+  color: white;
+}
+
+.score-good {
+  background-color: #34d399;
+  color: white;
+}
+
+.score-decent {
+  background-color: #fbbf24;
+  color: white;
+}
+
+.score-poor {
+  background-color: #f97316;
+  color: white;
+}
+
+.score-terrible {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* Overlap Warnings */
+.overlap-warnings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.overlap-warning-card {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.overlap-warning-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.overlap-warning-card-title.warning {
+  color: var(--warning-color);
+}
+
+.overlap-warning-card-title.info {
+  color: var(--info-color);
+}
+
+.overlap-warning-card-title.success {
+  color: var(--success-color);
+}
+
+.overlap-warning-list {
+  list-style: none;
+}
+
+.overlap-warning-item {
+  padding: 0.75rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.overlap-warning-item strong {
+  color: var(--text-primary);
+}
+
+/* Pattern Fit Chart */
+.pattern-fit-section {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pattern-fit-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.pattern-fit-chart {
+  height: 400px;
+  position: relative;
+}
+
+/* Gap Analysis */
+.gap-analysis {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gap-analysis-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.gap-analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.gap-item {
+  background-color: var(--bg-tertiary);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.gap-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.gap-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap-item-icon.missing {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: var(--error-color);
+}
+
+.gap-item-icon.recommended {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: var(--success-color);
+}
+
+.gap-item-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.gap-item-description {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Recommendations */
+.recommendations-section {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.recommendations-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recommendations-title svg {
+  color: var(--success-color);
+}
+
+.recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recommendation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 0.75rem;
+  border-left: 4px solid var(--success-color);
+}
+
+.recommendation-number {
+  width: 28px;
+  height: 28px;
+  background-color: var(--success-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.recommendation-content {
+  flex: 1;
+}
+
+.recommendation-content-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.recommendation-content-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Score Legend */
+.score-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+.score-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.score-legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 0.25rem;
+}
+
+/* Empty State */
+.overlap-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+}
+
+.overlap-empty-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlap-empty-icon svg {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.overlap-empty-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.overlap-empty-text {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Disclaimer */
+.overlap-disclaimer {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left: 4px solid var(--info-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.overlap-disclaimer-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--info-color);
+  margin-bottom: 0.5rem;
+}
+
+.overlap-disclaimer-text {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .overlap-warnings {
+    grid-template-columns: 1fr;
+  }
+  
+  .pattern-selection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .bag-balls-display {
+    justify-content: center;
+  }
+  
+  .matrix-table {
+    font-size: 0.75rem;
+  }
+  
+  .matrix-cell {
+    width: 45px;
+    height: 35px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pattern-selection-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .score-legend {
+    flex-direction: column;
+    align-items: center;
+  }
+}

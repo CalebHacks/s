@@ -1,0 +1,546 @@
+/* Card Components */
+
+/* Ball Card */
+.ball-card {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ball-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.ball-card-image {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+  overflow: hidden;
+}
+
+.ball-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.ball-card:hover .ball-card-image img {
+  transform: scale(1.05);
+}
+
+.ball-card-badges {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.ball-card-content {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ball-card-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ball-card-brand-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.ball-card-brand-name {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ball-card-year {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.ball-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.ball-card-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ball-card-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ball-card-spec {
+  background-color: var(--bg-tertiary);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.ball-card-spec-label {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.ball-card-spec-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ball-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.ball-card-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ball-card-action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ball-card-btn-bag {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.ball-card-btn-bag:hover {
+  background-color: var(--primary-hover);
+}
+
+.ball-card-btn-compare {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.ball-card-btn-compare:hover {
+  background-color: var(--accent-hover);
+}
+
+.ball-card-btn-details {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.ball-card-btn-details:hover {
+  background-color: var(--border-color);
+}
+
+/* Compact Ball Card */
+.ball-card-compact .ball-card-image {
+  height: 150px;
+}
+
+.ball-card-compact .ball-card-content {
+  padding: 1rem;
+}
+
+.ball-card-compact .ball-card-title {
+  font-size: 1rem;
+}
+
+/* Table Row Card */
+.ball-table-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px 100px 100px 100px 100px 150px;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 0.75rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s;
+}
+
+.ball-table-row:hover {
+  background-color: var(--bg-tertiary);
+  transform: translateX(4px);
+}
+
+.ball-table-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.ball-table-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ball-table-brand {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.ball-table-spec {
+  text-align: center;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.ball-table-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* Spec Card */
+.spec-card {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.spec-card:hover {
+  background-color: var(--bg-tertiary);
+  transform: translateY(-4px);
+}
+
+.spec-card-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spec-card-icon svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.spec-card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.spec-card-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Rating Bar */
+.rating-bar {
+  margin-bottom: 1rem;
+}
+
+.rating-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.rating-bar-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.rating-bar-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.rating-bar-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-tertiary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rating-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease-out;
+}
+
+.rating-bar-fill.high {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.rating-bar-fill.medium {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.rating-bar-fill.low {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+/* Info Card */
+.info-card {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border-left: 4px solid var(--primary-color);
+}
+
+.info-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.info-card-content {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Warning Card */
+.warning-card {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border-left: 4px solid var(--warning-color);
+}
+
+.warning-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--warning-color);
+  margin-bottom: 0.5rem;
+}
+
+.warning-card-content {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Pattern Card */
+.pattern-card {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.pattern-card:hover {
+  background-color: var(--bg-tertiary);
+  transform: translateY(-4px);
+}
+
+.pattern-card.selected {
+  border: 2px solid var(--primary-color);
+  background-color: rgba(8, 145, 178, 0.1);
+}
+
+.pattern-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.pattern-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.pattern-card-length {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.pattern-card-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pattern-card-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Comparison Card */
+.compare-card {
+  background-color: var(--bg-secondary);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.compare-card-header {
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+  text-align: center;
+}
+
+.compare-card-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 0.75rem;
+  border: 3px solid var(--primary-color);
+}
+
+.compare-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.compare-card-brand {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.compare-card-body {
+  padding: 1rem;
+}
+
+.compare-card-spec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.compare-card-spec:last-child {
+  border-bottom: none;
+}
+
+.compare-card-spec-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.compare-card-spec-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.compare-card-spec-value.highlight-high {
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.compare-card-spec-value.highlight-low {
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.compare-card-spec-value.highlight-mid {
+  color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.1);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.compare-card-remove {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 28px;
+  height: 28px;
+  background-color: var(--bg-tertiary);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.compare-card-remove:hover {
+  background-color: var(--error-color);
+  color: white;
+}
+
+/* Responsive cards */
+@media (max-width: 768px) {
+  .ball-table-row {
+    grid-template-columns: 60px 1fr;
+    gap: 0.5rem;
+  }
+  
+  .ball-table-spec,
+  .ball-table-brand {
+    display: none;
+  }
+  
+  .compare-card {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,223 @@
+/* Dark Mode Styles */
+
+/* Dark mode is the default - these are light mode overrides */
+
+.light {
+  /* Background colors */
+  --bg-primary: #f9fafb;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e5e7eb;
+  
+  /* Text colors */
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  
+  /* Border colors */
+  --border-color: #e5e7eb;
+  
+  /* Navbar */
+  --navbar-bg: rgba(255, 255, 255, 0.95);
+}
+
+/* Light mode navbar */
+.light .navbar {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom-color: var(--border-color);
+}
+
+.light .navbar-brand {
+  color: var(--text-primary);
+}
+
+.light .nav-link {
+  color: var(--text-secondary);
+}
+
+.light .nav-link:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.light .nav-icon-btn {
+  color: var(--text-secondary);
+}
+
+.light .nav-icon-btn:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* Light mode cards */
+.light .card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.light .card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Light mode ball cards */
+.light .ball-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.light .ball-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Light mode comparison columns */
+.light .comparison-column {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Light mode inputs */
+.light input,
+.light select,
+.light textarea {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.light input::placeholder {
+  color: var(--text-muted);
+}
+
+.light input:focus,
+.light select:focus,
+.light textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
+}
+
+/* Light mode badges */
+.light .badge {
+  color: white;
+}
+
+/* Light mode hero */
+.light .hero {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+/* Light mode footer */
+.light .footer {
+  background-color: var(--bg-secondary);
+  border-top-color: var(--border-color);
+}
+
+/* Light mode scrollbars */
+.light ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Light mode skeletons */
+.light .skeleton {
+  background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-secondary) 50%, var(--bg-tertiary) 75%);
+}
+
+/* Light mode tooltips */
+.light .tooltip {
+  background-color: #1f2937;
+  color: white;
+}
+
+/* Light mode modal */
+.light .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.light .modal-content {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+/* Chart adjustments for light mode */
+.light .chart-card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Table styles for light mode */
+.light .ball-table-row {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.light .ball-table-row:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* Matrix table for light mode */
+.light .matrix-table th {
+  background-color: var(--bg-tertiary);
+}
+
+.light .matrix-table td {
+  border-color: var(--border-color);
+}
+
+/* Pattern cards for light mode */
+.light .pattern-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.light .pattern-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Bag slots for light mode */
+.light .bag-slot {
+  border-color: var(--border-color);
+}
+
+.light .bag-slot.filled {
+  border-color: var(--primary-color);
+}
+
+/* Saved bags for light mode */
+.light .saved-bag-card {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.light .saved-bag-card:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* Warning and info cards for light mode */
+.light .warning-card {
+  background-color: rgba(245, 158, 11, 0.08);
+}
+
+.light .info-card {
+  background-color: rgba(59, 130, 246, 0.08);
+}
+
+/* Stats for light mode */
+.light .stat-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Quick links for light mode */
+.light .quick-link-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.light .quick-link-card:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* Back to top button for light mode */
+.light .back-to-top {
+  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
+}
+
+/* Transition for theme switch */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
